@@ -1,7 +1,5 @@
 package ro.ase.acs.models;
 
-import ro.ase.acs.exceptions.InsufficentFunds;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,22 +7,6 @@ public class BankAccount {
     private String owner;
     private String IBAN;
     private List<Float> transactions = new ArrayList<>();
-
-    public String getOwner() {
-        return owner;
-    }
-
-    public void setOwner(String owner) {
-        this.owner = owner;
-    }
-
-    public String getIBAN() {
-        return IBAN;
-    }
-
-    public void setIBAN(String IBAN) {
-        this.IBAN = IBAN;
-    }
 
     public List<Float> getTransactions() {
         return transactions;
@@ -35,26 +17,19 @@ public class BankAccount {
     }
 
     public float getBalance(){
-        float sold = 0;
-        for(float s : transactions){
-            sold+=s;
+        float balance = 0;
+        for(float transaction : transactions){
+            balance+=transaction;
         }
-        return sold;
+        return balance;
     }
 
-    public void addTransaction(Float f) throws InsufficentFunds {
-        if(-f > getBalance()){
-            throw new InsufficentFunds();
+    public void addTransaction(Float amount) throws Exception {
+        if(-amount > getBalance()){
+            throw new Exception("Insufficent funds");
         }
-        if(f <= 2000f && f >= -2000f && f != 0){
-            this.transactions.add((float) (Math.floor(f * 100) / 100));
-        }
-    }
-
-    public void restoreTransactions(List<Float> transactions){
-        this.transactions.clear();
-        for(Float trans : transactions){
-            this.transactions.add(trans);
+        if(amount <= 2000f && amount >= -2000f && amount != 0){
+            this.transactions.add((float) (Math.floor(amount * 100) / 100));
         }
     }
 }
