@@ -3,7 +3,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class BankAccountTest {
+public class MainBankAccountTest {
 
     private BankAccount bankAccount;
 
@@ -30,19 +30,5 @@ public class BankAccountTest {
 
         float result = bankAccount.getBalance();
         assertEquals("Wrong balance", 400, result, 0.001f);
-    }
-
-    @Test
-    public void testCardinality() {
-        float result = bankAccount.getBalance();
-        assertEquals("Balance is not correct", 0, result, 0.001f);
-    }
-
-    @Test(timeout = 1000)
-    public void testTimeFrame() throws Exception {
-        for(int i =0 ; i < 1000; i++) {
-            bankAccount.addTransaction(100f);
-        }
-        bankAccount.getBalance();
     }
 }
