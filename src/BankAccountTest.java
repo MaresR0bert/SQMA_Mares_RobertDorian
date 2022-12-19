@@ -1,8 +1,5 @@
-package ro.ase.acs.tests;
-
 import org.junit.Before;
 import org.junit.Test;
-import ro.ase.acs.models.BankAccount;
 
 import static org.junit.Assert.*;
 
