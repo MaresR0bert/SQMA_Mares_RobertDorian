@@ -1,3 +1,6 @@
+package test;
+
+import bank.BankAccount;
 import org.junit.Before;
 import org.junit.Test;
 
